@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<base href="{$siteurl}" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$sitename}地图列表</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<style type="text/css">
+body {font-family: Verdana;FONT-SIZE: 12px;MARGIN: 0;color: #000000;background: #ffffff;}
+img {border:0;}
+li {line-height:25px;float:left;width:410px;display:block;padding-left:15px;padding:0;overflow:hidden;height:25px;}
+li span{text-align:right;width:50px;display:block;float:left;margin-right:5px;font-size:9px;}
+.page {padding: 4px; border-top: 1px #EEEEEE solid;clear:both;}
+#nav, #content, #footer {padding: 8px; border: 1px solid #EEEEEE; clear: both; width: 962px; margin: auto; margin-top: 10px;}
+.page input{display:none;}
+</style>
+</head>
+<body vlink="#333333" link="#333333">
+<h2 style="text-align: center; margin-top: 20px">{$sitename} Archiver </h2>
+<center></center>
+<div id="nav"><a href="{$root}"><strong>{$sitename}</strong></a>  &raquo; <a href="{:ppvodurl('ajax/show-id-archiver',false,false,false,true)}">网站地图</a></div>
+<div id="content">
+<ul type="1" start="1"><php>$vod_list=$pplist->ppvod('num:30;page:true;order:vod_addtime desc,vod_id desc');$page=$vod_list[0]['page'];</php>
+<volist name="vod_list" id="ppvod"><php>$vod_allpin=$ppvod['vod_up']+$ppvod['vod_down']</php>
+<li><span>{$ppvod.vod_id}.</span><a href="{$ppvod.vod_url}" title="{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name}</a>({$vod_allpin} 人评)</li>
+</volist>
+</ul>
+<div class="page">{$page}</div>
+</div>
+</body>
+</html>

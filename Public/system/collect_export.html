@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>自定义采集</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/css/admin-style.css' />
+<script language="JavaScript" type="text/javascript" charset="utf-8" src="__PUBLIC__/js/jquery.js"></script>
+<script language="JavaScript" type="text/javascript" charset="utf-8" src="__PUBLIC__/js/admin.js"></script>
+<script language="javascript">
+function SelectAll(){
+  for(var i=0;i<document.myform.ids.length;i++){
+	document.myform.ids.options[i].selected=true;}
+}
+function UnSelectAll(){
+  for(var i=0;i<document.myform.ids.length;i++){
+	document.myform.ids.options[i].selected=false;}
+}
+</script>
+</head>
+<body class="body">
+<form action='?s=Admin-Collect-Exportsql' method='post' name='myform' id='myform'>
+<table border="0" cellpadding="0" cellspacing="0" class="table">
+<thead><tr><th colspan="2" class="r"><span style="float:left">请选择要导出的采集规则</span><span style="float:right"><a href="?s=Admin-Collect-Show">返回采集管理</a></span></th></tr></thead>
+  <tbody> 
+  <tr>
+  	<td class="r ct" style="padding:10px 0px; width:60%"><select name='ids[]' id="ids" size='2' multiple style='height:350px;width:450px;'><volist name="list_collect" id="ppvod"><option value='{$ppvod.collect_id}'>{$ppvod.collect_title}</option></volist></select></td>
+    <td class="r pd" style="padding:10px 0px; width:40%"><input type='button' name='Submit' value='选定所有' class="submit" onclick='SelectAll()'><br><br><input type='button' name='Submit' value='取消选定' class="submit" onclick='UnSelectAll()'><br><br><br><b>&nbsp;提示：按住“Ctrl”或“Shift”键可以多选</b></td>
+  </tr>
+  <tfoot>
+    <tr>
+      <td colspan="6" class="r ct"><if condition="strtolower(ACTION_NAME) eq import"><input type="button" value="导入采集规则" class="submit" onClick="post('?s=Admin-Collect-Importsql');"><else/><input type="button" value="导出采集规则" class="submit" onClick="post('?s=Admin-Collect-Exportsql');"></if></td>
+    </tr>  
+  </tfoot>            
+</table>
+</form> 
+<include file="./Public/system/footer.html" />
+</body>
+</html>

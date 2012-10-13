@@ -1,0 +1,24 @@
+﻿<div class="ff-hd">
+	<div class="logo"><a href="{$root}"><img src="{$tpl}images/logo.gif" alt="{$sitename}"/></a></div>
+   <div class="tips" id="user_status"></div>
+	<div class="banner" id="banner">{$hotkey}</div>
+	
+  </div>  	
+<div class="nav1">
+	<ul class="nav_ul">
+		<li class="no_bg"><a href="{$root}" target="_self">首页</a></li>
+	<volist name="list_menu" id="ppvod">
+    	<volist name="ppvod.son" id="son"><li <eq name="ppvod.list_id" value="$list_id"> class="no_bg"</eq>><a href="{$son.list_url}">{$son.list_name}</a></li></volist>
+	</volist>
+	<li><a href="{:getlistname(3,'list_url')}">经典动漫</a></li><li> <a href="{:getlistname(4,'list_url')}">综艺其他</a></li>	
+	</ul>
+</ul>
+    
+<p class="new"></p>
+    <p class="nav_tag" id="tag"><span>
+    	<a href="{:getlistname(1,'list_url')}">电影</a> | <a href="{:getlistname(2,'list_url')}">电视剧</a> | <a href="{$url_map_rss}" target="_blank">RSS订阅</a> | <a href="{:ff_mytpl_url('my_new.html')}">今日更新</a> | <a href="{:ff_mytpl_url('my_hot.html')}">排行榜</a> | <a href=http://ku8.tv title="酷8电影网" rel="sidebar" onclick="javascript:window.external.AddFavorite('http://ku8.tv', '酷8电影网');return false;">收藏本站</a> |  <a href="{$url_guestbook}">留言求片</a>
+ |  <a href="http://ku8.tv/vod-show-id-24.html"><font color=red><b>网络电视直播</font></b></a>
+</p>
+
+<p class="search"><form method="post" action="{$root}index.php?s=vod-search"><div class="form-box"><input name="wd" id="wd" value="输入影片、导演或演员名" maxlength="26" type="text" onFocus="if (value =='输入影片、导演或演员名'){value =''}" onBlur="if (value ==''){value='输入影片、导演或演员名'}"><input type="submit" class="submit" value="影视搜索"></div><input type="hidden" name="form_index" value="c3275a4fd37c7b208d378765a967d1e2" /></form></p>
+</div>

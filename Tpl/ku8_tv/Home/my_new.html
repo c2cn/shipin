@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新电视剧排行榜-最新电影排行榜-最新动漫排行榜-酷8电影网</title>
+<meta name="keywords" content="最新电视剧排行榜,最新电影排行榜,最新动漫排行榜,2012电影排行榜">
+<meta name="description" content="电影影视风云榜为您提供最新电视剧排行榜，最新电影排行榜，经典电视剧排行榜，韩国电视剧排行榜，2012大片排行榜等多种影视排行数据服务！">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link href="{$tpl}css.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="kk-rank">
+<include file="Home:pp_header" />
+<div class="container">
+<php>$pidarr=array(1);
+$vod_hot_tv = ff_mysql_vod('limit:50;cid:2;order:vod_addtime desc,vod_hits desc');
+$vod_hot_dy = ff_mysql_vod('limit:50;cid:1;order:vod_addtime desc,vod_hits desc');
+$vod_hot_zy = ff_mysql_vod('limit:50;cid:3,4;order:vod_addtime desc,vod_hits desc');
+</php>
+<volist name="pidarr" id="ppcid">
+<div class="column1">
+<div class="box">
+    <h2>最近更新电影</h2>
+    <div class="content">
+    <ul class="rankList">
+
+<volist name="vod_hot_dy" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,14}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_addtime|getcolordate='m-d',###}</strong></span></li>
+</volist>
+	</ul>
+    </div>
+</div>
+<div class="box">
+    <h2>最近更新电视剧</h2>
+    <div class="content">
+    <ul class="rankList">
+
+<volist name="vod_hot_tv" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,14}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_addtime|getcolordate='m-d',###}</strong></span></li>
+</volist>
+		</ul>
+    </div>
+</div>
+</div>
+<div class="column2">
+<div class="box">
+    <h2>最近更新综艺动漫</h2>
+    <div class="content">
+    <ul class="rankList">
+
+<volist name="vod_hot_zy" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,14}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_addtime|getcolordate='m-d',###}</strong></span></li>
+</volist>
+	</ul>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</volist>
+</div>
+<include file="Home:pp_footer" />
+</body>
+</html>

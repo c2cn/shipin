@@ -1,0 +1,31 @@
+<script language="javascript">
+// 显示标签框
+function showtags(){
+	var offset = $(".xy_tag").offset();
+	var left = offset.left/2;
+	var top = offset.top+30;
+	var html = $.ajax({
+		url: "?s=Admin-Tag-Showajax",
+		async: false
+	}).responseText;
+	$("#showtags").html(html);
+	$("#showtags").css({left:left,top:top,display:""});
+}
+// 添加标签
+function addtag(tag){
+	var val = $('#vod_tags').val();
+	if(val!=''){
+		val = val+' '+tag;
+	}else{
+		val = tag;
+	}
+	$('#vod_tags').val(val);
+	//tag_close();
+}
+// 关闭标签框
+function tag_close(){
+	$("#showtags").css('display','none');
+}
+</script>
+<!--标签选择框-->
+<div id="showtags" style="position:absolute;display:none;" class="showtags"><a href="javascript:tag_close()">关闭</a></div>

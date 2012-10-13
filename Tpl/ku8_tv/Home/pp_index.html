@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}_酷8高清_酷8影院_酷8电视_2012最新电影大片免费在线观看</title>
+<meta name="robots" content="all" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<link href="{$tpl}css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<php>
+$vod_stars = ff_mysql_vod('limit:8;order:vod_stars desc,vod_addtime desc');
+$vod_news = ff_mysql_vod('limit:14;order:vod_addtime desc');
+$vod_hot_tv = ff_mysql_vod('limit:12;cid:2;order:vod_addtime desc');
+$vod_hot_dm = ff_mysql_vod('limit:12;cid:3;order:vod_addtime desc');
+$vod_hot_dy = ff_mysql_vod('limit:12;cid:1;order:vod_addtime desc');
+$vod_hot_zy = ff_mysql_vod('limit:12;cid:4;order:vod_addtime desc');
+
+</php>
+
+<include file="Home:pp_headerjs1" />
+
+<div class="container">
+<div class="sideL"><div class="box djgz">
+    <h2>最近更新影片</h2>
+    <div class="content">
+        <ol class="sort-list">
+
+<fflist name="vod_news" id="ppvod">
+			<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,8}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score">{$ppvod.vod_addtime|getcolordate='m-d',###}</span></li>
+</fflist>
+		</ol>
+
+    </div>
+</div></div>
+<!-- -->
+<div class="mainS"><div class="box huanying">
+    <h2><span>本站共有影片{:getcount(0)}部 今日更新{:getcount(999)}部</span>最受欢迎影片</h2>
+    <div class="content">
+        <ul>
+<volist name="vod_stars" id="ppvod">
+			<li><a href="{$ppvod.vod_readurl}" class="playpic" target="_blank"><img src="{$ppvod.vod_pic|getpicurl}" alt="{$ppvod.vod_name}" onerror="javascript:this.src='{$root}Public/images/nophoto.jpg';"/><em></em></a><span class="bg hover_bg"></span><span class="hover_bg_txt">{$ppvod.vod_title|default='最新热片'}</span><p class="mov-title"><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》">{$ppvod.vod_name}</a></p></li>
+</volist>
+		</ul>
+    </div>
+</div></div>
+<!-- -->
+<div class="sideR"><div class="box paihang">
+        <h2>上升最快影片</h2><dl class="channel"><dd>周点击</dd></dl>
+        <div class="content">
+            <ol class="sort-list">
+<php>$hot_week = ff_mysql_vod('cid:'.$list_id.';limit:14;order:vod_hits_month desc,vod_addtime desc');</php>
+<volist name="hot_week" id="ppvod">
+				<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,8}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_hits_month}</strong></span></li>
+</volist>
+			</ol>
+
+        </div>
+</div>
+
+</div>
+
+<div class="main">
+	<div class="box dydsj">
+	<h2>电影频道</h2><dl class="channel"><dd><a href="{:getlistname(1,'list_url')}" title="更多">更多>></a></dd></dl>
+    <div class="content">
+      <div class="movList">
+		<ul class="ull">
+<volist name="vod_hot_dy" id="ppvod">
+			<li><a href="{$ppvod.vod_readurl}" class="playpic" target="_blank"><img src="{$ppvod.vod_pic|getpicurl}" alt="{$ppvod.vod_name}" onerror="javascript:this.src='{$root}Public/images/nophoto.jpg';"/><em></em></a><span class="bg hover_bg"></span><span class="hover_bg_txt">{$ppvod.vod_title|default='最新热片'}</span><p class="mov-title"><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》">{$ppvod.vod_name}</a><a href="{$ppvod.vod_readurl}" class="playMov"></a></p></li>
+</volist>
+		</ul>
+
+     
+    </div>
+    </div>
+    </div>
+</div>
+<div class="sideR">
+<div class="box paihang">
+    <h2>电影人气排行</h2><dl class="channel"><dd><a href="{:getlistname(1,'list_url')}" title="更多">更多>></a></dd></dl>
+    <div class="content">
+        <ol class="sort-list">
+<php>$hot_dy1 = ff_mysql_vod('cid:1'.$list_id.';limit:14;order:vod_hits desc,vod_addtime desc');</php>
+<volist name="hot_dy1" id="ppvod">
+			<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》" target="_blank">{$ppvod.vod_name|msubstr=0,10}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span></span><span class="score">{$ppvod.vod_gold}分</span></li>
+</volist>
+		</ol>
+    </div>
+</div>
+</div>
+ 
+<div class="main">
+	<div class="box dydsj">
+	<h2>连续剧频道</h2><dl class="channel"><dd><a href="{:getlistname(2,'list_url')}" title="更多">更多>></a></dd></dl>
+    <div class="content">
+        <div class="movList">
+		<ul class="ull">
+<volist name="vod_hot_tv" id="ppvod">
+			<li><a href="{$ppvod.vod_readurl}" class="playpic" target="_blank"><img src="{$ppvod.vod_pic|getpicurl}" alt="{$ppvod.vod_name}" onerror="javascript:this.src='{$root}Public/images/nophoto.jpg';"/><em></em></a><span class="bg hover_bg"></span><span class="hover_bg_txt"><neq name="ppvod.vod_continu" value="0">连载至{$ppvod.vod_continu}集<else/>完结</neq></span><p class="mov-title"><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》">{$ppvod.vod_name}</a><a href="{$ppvod.vod_readurl}" class="playMov"></a></p></li>
+</volist>
+		
+		</ul>
+    	</div>
+    </div>
+    </div>
+</div>
+<div class="sideR">
+<div class="box paihang">
+    <h2>连续剧人气排行</h2><dl class="channel"><dd><a href="{:getlistname(2,'list_url')}" title="更多">更多>></a></dd></dl>
+    <div class="content">
+        <ol class="sort-list">
+<php>$hot_tv1 = ff_mysql_vod('cid:2'.$list_id.';limit:14;order:vod_hits desc,vod_addtime desc');</php>
+<volist name="hot_tv1" id="ppvod">
+			<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》" target="_blank">{$ppvod.vod_name|msubstr=0,10}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span></span><span class="score">{$ppvod.vod_gold}分</span></li>
+</volist>
+		</ol>
+    </div>
+</div>
+</div>
+
+<div class="main">
+	<div class="box dydsj">
+	<h2>动漫频道</h2><dl class="channel"><dd><a href="{:getlistname(3,'list_url')}" title="更多">更多>></a></dd></dl>
+    <div class="content">
+        <div class="movList">
+		<ul class="ull">
+	
+<volist name="vod_hot_dm" id="ppvod">
+			<li><a href="{$ppvod.vod_readurl}" class="playpic" target="_blank"><img src="{$ppvod.vod_pic|getpicurl}" alt="{$ppvod.vod_name}" onerror="javascript:this.src='{$root}Public/images/nophoto.jpg';"/><em></em></a><span class="bg hover_bg"></span><span class="hover_bg_txt"><neq name="ppvod.vod_continu" value="0">连载至{$ppvod.vod_continu}集<else/>完结</neq></span><p class="mov-title"><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》">{$ppvod.vod_name}</a><a href="{$ppvod.vod_readurl}" class="playMov"></a></p></li>
+</volist>
+		</ul>
+
+    	</div>
+    </div>
+    </div>
+</div>
+<div class="sideR">
+<div class="box paihang">
+    <h2>动漫人气排行</h2><dl class="channel"><dd><a href="{:getlistname(3,'list_url')}" title="更多">更多>></a></dd></dl>
+    <div class="content">
+        <ol class="sort-list">
+<php>$hot_dm1 = ff_mysql_vod('cid:3'.$list_id.';limit:14;order:vod_hits desc,vod_addtime desc');</php>
+<volist name="hot_dm1" id="ppvod">
+			<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》" target="_blank">{$ppvod.vod_name|msubstr=0,10}</a><span class="score">{$ppvod.vod_gold}分</span></li>
+</volist>
+		</ol>
+    </div>
+</div>
+</div>
+
+<div class="main">
+	<div class="box dydsj">
+	<h2>综艺频道</h2><dl class="channel"><dd><a href="{:getlistname(4,'list_url')}" title="更多">更多>></a></dd></dl>
+    <div class="content">
+      <div class="movList">
+		<ul class="ull">		
+<volist name="vod_hot_zy" id="ppvod">
+			<li><a href="{$ppvod.vod_readurl}" class="playpic" target="_blank"><img src="{$ppvod.vod_pic|getpicurl}" alt="{$ppvod.vod_name}" onerror="javascript:this.src='{$root}Public/images/nophoto.jpg';"/><em></em></a><span class="bg hover_bg"></span><span class="hover_bg_txt"><neq name="ppvod.vod_continu" value="0">{$ppvod.vod_continu}集<else/>完结</neq></span><p class="mov-title"><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》">{$ppvod.vod_name}</a><a href="{$ppvod.vod_readurl}" class="playMov"></a></p></li>
+</volist>
+		</ul>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="sideR">
+<div class="box paihang">
+    <h2>综艺人气排行</h2><dl class="channel"><dd><a href="{:getlistname(4,'list_url')}" title="更多">更多>></a></dd></dl>
+    <div class="content">
+        <ol class="sort-list">
+<php>$hot_zy1 = ff_mysql_vod('cid:4'.$list_id.';limit:14;order:vod_hits desc,vod_addtime desc');</php>
+<volist name="hot_zy1" id="ppvod">
+			<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放《{$ppvod.vod_name}》" target="_blank">{$ppvod.vod_name|msubstr=0,10}</a><span class="score">{$ppvod.vod_gold}分</span></li>
+</volist>
+		</ol>
+    </div>
+</div>
+</div>
+
+<div class="box friend">
+	<h2>友情链接</h2><dl class="channel"><dd>要求百度正常收录并且快照3天内的站点做上本站友链后到留言本留言即可。友链关键词：<a href="http://ku8.tv">{$sitename}</a></dd></dl>
+    <div class="content">
+	<ul><li><a href="http://ku8.tv">酷8电影网</a></li><fflist name="list_link" id="ppvod"><li><a href="{$ppvod.link_url}" target="_blank">{$ppvod.link_name}</a></li></fflist></ul>
+</div>
+</div>
+
+<include file="Home:pp_footer" />
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<include file="Home:system_title_play" />
+<link href="{$tpl}css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$tpl}js/ajax.js" charset="utf-8"></script>
+</head>
+<body>
+<include file="Home:pp_header" />
+<div class="player">{$vod_player}</div>
+<div class="container">
+    <div class="box data">
+<volist name="vod_playlist" id="ppvod">
+            <h2><div><a href="{$vod_playurl}">播放来源：{$ppvod.playername}</a></div></h2>
+            <div class="content"><ul class="play"><volist name="ppvod['son']" id="ppvodson"><a href="{$ppvodson.playurl}" target="_blank">{$ppvodson.playname}</a></volist></div>
+   <div class="bai">  </div>
+            </volist>
+            <div class="bai">  </div>
+
+<div class="container">
+<div class="box data">
+<h2><div><a href="{$vod_readurl}">{$vod_name}全集剧情介绍</a></div></h2>
+<div class="content">
+<div class="vod_content"><ul>{:ff_content_url($vod_content,$Tag)}<br />
+<a href="http://ku8.tv/">酷8电影网</a>致力于打造最新最全的电影电视剧网站，这里有最新电影电视剧的介绍、在线观看和高速下载地址，<a href="http://ku8.tv/">酷8电影网</a>有高清电影在线观看，是电影迷的网上影吧！
+</ul></div>
+</div>
+<div class="bai">  </div>
+
+<div class="container">
+<div class="box data">
+        <h2><div><a href="{$list_url}">热播{$list_name}</a></div></h2>
+        <div class="content">
+        <ul class="hot wbox"><php>$hot_week = ff_mysql_vod('cid:'.$list_id.';limit:8;order:vod_hits_month desc,vod_addtime desc');</php>
+        <volist name="hot_week" id="ppvod"><li><p><a href="{$ppvod.vod_readurl}"><img src="{$ppvod.vod_picurl}" alt="{$ppvod.vod_name}" /></a></p><h4 class="space"><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,12}</a></h4></li></volist></ul>
+	</div>
+</div>
+</div>
+<include file="Home:pp_footer" />
+</div>
+</body>
+</html>

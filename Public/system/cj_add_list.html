@@ -1,0 +1,38 @@
+<gt name="collect_id" value="0">
+    <form action="?s=Admin-Collect-Update" method="post" name="myform" id="myform">
+    <input type="hidden" name="collect_id" value="{$collect_id}">
+<else/>
+    <form action="?s=Admin-Collect-Insert" method="post" name="myform" id="myform">
+</gt>
+    <ul><li class="left">节点名称：</li>
+    	<li class="right"><input type="text" name="collect_title" id="collect_title" value="{$collect_title}" class="w250" maxlength="30"></li>
+        <li class="left" style="width:80px">目标编码：</li>
+    	<li class="right"><select name="collect_encoding"><option value="gb2312">GB2312</option><option value="utf-8" <eq name="collect_encoding" value="utf-8">selected</eq>>UTF-8</option><option value="big5" <eq name="collect_encoding" value="big5">selected</eq>>BIG5</option></select></li>
+    </ul>
+    <ul><li class="left">播放器选择：</li>
+    	<li class="right"><select name="collect_player" class="w150"><volist name="playtree" id="ppvod" ><option value='{$key}' <eq name="key" value="$collect_player">selected</eq>>{$i}.{$key}.{$ppvod[1]}</option></volist></select></li>
+        <li class="left" style="width:80px">采集参数：</li>
+    	<li class="right"><input type="checkbox" name="collect_savepic" id="collect_savepic" value="1" class="noborder w30" <eq name="collect_savepic" value="1">checked</eq>>保存图片 <input type="checkbox" name="collect_order" id="collect_order" value="1" class="noborder w30" <eq name="collect_order" value="1">checked</eq>>倒序采集</li>
+    </ul>
+    <ul><li class="left">设置分页形式：</li>
+    	<li class="right"><input type="radio" name="collect_pagetype" value="1" onClick="collecttab(1,4);" class="noborder w30" <eq name="collect_pagetype" value="1">checked</eq>>手动列表页&nbsp;<input name="collect_pagetype" type="radio" value="2" onClick="collecttab(2,4);" class="noborder w30" <eq name="collect_pagetype" value="2">checked</eq>>批量列表页&nbsp;<input name="collect_pagetype" type="radio" value="3" onClick="collecttab(3,4);" class="noborder w30" <eq name="collect_pagetype" value="3">checked</eq>>批量内容页&nbsp;<input name="collect_pagetype" type="radio" value="4" onClick="collecttab(4,4);" class="noborder w30" <eq name="collect_pagetype" value="4">checked</eq>>手动内容页</li>
+    </ul>
+    <ul id="collect1" <if condition="($collect_pagetype eq 2) OR ($collect_pagetype eq 3) ">style="display:none"</if>>
+    	<li class="left t25">一行一个网址：</li>
+    	<li style="padding:3px 0px"><textarea name="collect_liststr" rows="5" class="w400">{$collect_liststr}</textarea></li>
+    </ul>
+    <ul id="collect2" <gt name="collect_pagetype" value="2">style="display:none"</gt>>
+    	<li class="left t25">批量分页规则：</li>
+    	<li><input name="collect_pagestr" type="text" value="{$collect_pagestr}" class="w400"><br>格式：http://www.xxx.com/list.asp?page=[$ppvod] 分页代码<font color=red>[$ppvod]</font><br>采集范围：<input name="collect_pagesid" type="text" value="{$collect_pagesid}" class="w50"> To <input name="collect_pageeid" type="text" value="{$collect_pageeid}" class="w50"> 例如：1 - 9</li>
+    </ul> 
+    <ul><li class="left t25">缩小内容页链接范围：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_listurlstr" id="collect_listurlstr" class="w400 h80" title="如不缩小范围，请留空">{$collect_listurlstr}</textarea></li>
+    </ul>
+     <ul><li class="left t25">内容页链接规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_listlink" id="collect_listlink" class="w400 h80">{$collect_listlink}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[listlink]" class="w300 h80" title="分类替换规则">{$collect_replace[0]}</textarea></li>
+    </ul>
+     <ul style="border-bottom:none"><li class="left t25">列表页图片链接规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_listpicstr" id="collect_listpicstr" class="w400 h80" title="如图片在内容页 请留空">{$collect_listpicstr}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[listpicstr]" class="w300 h80" title="分类替换规则">{$collect_replace[1]}</textarea></li>
+    </ul>

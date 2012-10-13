@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>自定义采集</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/css/admin-style.css' />
+<script language="JavaScript" type="text/javascript" charset="utf-8" src="__PUBLIC__/js/jquery.js"></script>
+<script language="JavaScript" type="text/javascript" charset="utf-8" src="__PUBLIC__/js/admin.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+	$ff84.show.table();	
+});
+function CheckDingshi(str){
+	if(str=='index.php?s=Admin-Collect-Dingshi'){
+		$('#dingshi').show();
+	}else{
+		$('#dingshi').hide();
+	}
+} 
+</script>
+</head>
+<body class="body">
+<form action="?s=Admin-Collect-Delall" method="post" name="myform" id="myform">
+<table border="0" cellpadding="0" cellspacing="0" class="table">
+  <thead>
+    <tr class="ct">
+      <th class="l" width="50">ID</th>
+      <th class="l pd">采集节点名称</th>
+      <th class="r pd" width="200">相关操作</th>
+    </tr>
+  </thead>
+  <volist name="list_collect" id="ppvod">
+  <tbody> 
+  <tr>
+  	<td class="l pd"><input name='ids[]' type='checkbox' value='{$ppvod.collect_id}' style='border:none' checked>{$ppvod.collect_id}</td>
+    <td class="l pd">{$ppvod.collect_title}</td>
+    <td class="r ct"><a href="?s=Admin-Collect-Caiji-ids-{$ppvod.collect_id}">采集</a>｜<a href="?s=Admin-Collect-Add-id-{$ppvod.collect_id}">修改</a>｜<a href="?s=Admin-Collect-Cop-id-{$ppvod.collect_id}" onClick="return confirm('确定复制?')">复制</a>｜<a href="?s=Admin-Collect-Del-id-{$ppvod.collect_id}" onClick="return confirm('确定删除?')">删除</a>｜<a href="?s=Admin-Collect-Caiji-ids-{$ppvod.collect_id}-tid-1">测试</a></td>
+  </tr>
+  </tbody>
+  </volist> 
+  <tfoot>
+    <tr>
+      <td colspan="6" class="r"><input type="button" value="全选" class="submit" onClick="checkall('all');"> <input name="" type="button" value="反选" class="submit" onClick="checkall();"> <input type="button" value="批量删除" class="submit" onClick="if(confirm('删除后将无法还原,确定要删除吗?')){post('?s=Admin-Collect-Delall');}else{return false;}"> <input type="button" class="submit" value="添加链接" onClick="window.location='?s=Admin-Collect-Add';"></td>
+    </tr>  
+  </tfoot>            
+</table>
+</form> 
+<include file="./Public/system/footer.html" />
+</body>
+</html>

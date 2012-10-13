@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$sitename}-留言本</title>
+<meta name="keywords" content="{$keywords}">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="description" content="{$sitename}求片留言本，本站管理员将在第一时间回复与处理你的回复！">
+<link href="{$tpl}css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<include file="Home:pp_header" />
+<div class="container">
+<div class="box">
+<h2>留言本 共有{$gb_count}条留言记录</h2><dl class="channel"><dd><a href="#input">[发布留言]</a></dd></dl>
+<div class="content">
+    <div class="gb">
+        <div class="list">
+        <ul>
+<volist name="gb_list" id="ppvod">
+			<li>
+            <dd class="left"><h6>网友</h6><p><img src="{$tpl}images/face.jpg" /><br />IP:{$ppvod.gb_ip|msubstr=0,8}***</p></dd><dd class="line"></dd>
+            <dd class="right"><h6><span>第{$ppvod.gb_floor}楼</span>时间：{$ppvod.gb_addtime|date='Y-m-d H:i:s',###} </h6>
+            <dl><p class="zuti">{$ppvod.gb_content}</p><notempty name="ppvod.gb_intro"></br><p><font color=red>站长回复：</font>{$ppvod.gb_intro}</p></notempty></dl>
+            </dd>
+            </li>
+</volist>
+		</ul>
+        </div>
+        <div class="pages">{$gb_page}</div>
+    </div> 
+    <div class="gb"> 
+        <div class="form"><a name='input'></a>
+            <form action="{$root}index.php?s=Gb-Insert" method="post">
+			<input name="gb_del" type="hidden" value="1" />
+			<input name="gb_cid" type="hidden" value="{$gb_cid}" />
+            <ul class="right"><textarea name="gb_content" onFocus="if(this.value=='请在此输入留言内容!'){this.value='';}">{$gb_content}</textarea></ul>
+            
+            
+            
+            <li class="submit"><input type="submit" name="submit" value="提 交" class="btn-2"/><input type="reset" name="submit2" value="取 消" class="btn-2" /></li></ul>
+			</form>
+        </div>
+        <div class="clearfloat"></div>
+	</div>    
+</div>
+</div>
+</div>
+
+<include file="Home:pp_footer" />
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>自定义采集</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/css/admin-style.css' />
+<script language="JavaScript" type="text/javascript" charset="utf-8" src="__PUBLIC__/js/jquery.js"></script>
+<script language="JavaScript" type="text/javascript" charset="utf-8" src="__PUBLIC__/js/admin.js"></script>
+<style>
+input{ width:auto;}
+.cjtitle{ font-size:26px; height:45px; line-height:45px; padding-left:20px; color:#ccc; font-family: "微软雅黑"; text-align:left}
+.cjtitle em{ padding:0px 10px 0 5px; font-family:Arial, Helvetica, sans-serif; font-size:30px; font-weight:bold; color: #cad9ea}
+.cjnext{ clear:both;border-top:1px solid #cad9ea;font-size:24px; height:60px; line-height:60px; color:#ccc; font-family: "微软雅黑"; text-align:center;}
+</style>
+<script language="javascript">
+$(document).ready(function(){
+	$ff84.show.table();	 
+});
+function collecttab(no,n){
+	for(var i=1;i<=n;i++){
+		$('#collect'+i).hide();
+		$('#collect'+i+'str').hide();
+	}
+	if(no==1){
+	    $('#collect1').show();
+		$('#collect2str').show();
+	}else if(no==2){
+	    $('#collect2').show();
+		$('#collect2str').show();
+	    $('#collectpagename').html("批量生成列表页");
+	}else if(no==3){
+	    $('#collect2').show();
+	    $('#collectpagename').html("批量生成内容页");
+	}else if(no==4){
+	    $('#collect1').show();
+	    $('#collectpagename').html("手工生成内容页");
+	}	
+}
+function caijitab(id,val){
+	if(val>0){
+		$("#"+id).show();
+	}else{
+		$("#"+id).hide();
+	}
+}	
+</script>
+</head>
+<body class="body">
+<div class="title">
+	<div class="left">{$cj_tpltitle}采集节点 <a href="?s=Admin-Cj-Show">返回采集管理</a></div>
+    <div class="right">说明: 右侧为替换规则，一行一个用$$$隔开 如需替换163.com为feifeicms.com 则这样填写163.com$$$feifeicms.com</div>
+</div>
+<div class="add">
+<switch name="cj_mod" >
+    <case value="list"><include file="./Public/system/cj_add_list.html" /></case>
+    <case value="detail"><include file="./Public/system/cj_add_detail.html" /></case>
+    <case value="player"><include file="./Public/system/cj_add_player.html" /></case>
+<default  />
+	<include file="./Public/system/cj_add_node.html" />
+</switch>
+<include file="./Public/system/cj_add_next.html" />
+</div>
+<include file="./Public/system/footer.html" />
+</body>
+</html>

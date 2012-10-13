@@ -1,0 +1,12 @@
+<div class="cjnext">
+	下一步操作 <select name="cj_nextmod" class="w150"><option value='list' <eq name="cj_mod" value="list">selected</eq>>抓取栏目列表页</option><option value='detail' <eq name="cj_mod" value="detail">selected</eq>>抓取剧情介绍页</option><option value='player' <eq name="cj_mod" value="detail">selected</eq>>抓取播放地址页</option><option value='end'>已抓到地址，完成采集</option></select> 
+    <gt name="cj_oid" value="1">
+    <input type="button" class="submit" value="提交" onClick="post('?s=Admin-Cj-Update');"/>
+    <else />
+    <input type="button" class="submit" value="提交" onClick="post('?s=Admin-Cj-Insert');"/>
+    </gt>
+</div>
+<input type="hidden" name="cj_mod" value="{$cj_mod}">
+<input type="hidden" name="cj_oid" value="{$cj_oid}">
+<input type="hidden" name="cj_pid" value="{$cj_id|default='0'}">
+</form>

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新{$list_name}-{$list_name_big}{$list_name}-2012年最新{$list_name}-{$sitename}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="最新{$list_name}包含的影片有<volist name='vod_list' id='ppvod'>{$ppvod.vod_name|msubstr=0,10},</volist>完全免费在线观看！">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link href="{$tpl}css.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="kk-list">
+<include file="Home:pp_headerjs" />
+<div class="container">
+<div class="main">
+    <div class="box mov-list-box">
+    <h2>最新{$list_name}</h2><dl class="channel"><dd><a href="/my-show-id-new.html">今日电影电视</a> <a href="/my-show-id-hot.html">热门电影电视</a> <a href="/gb-show.html">我要求片</a></dd></dl>
+    <div class="content">
+        <div class="movList3">
+        <ul class="movList3_ul">
+		
+<php>$vod_list = ff_mysql_vod('cid:'.$list_id.';limit:12;page:true;order:vod_addtime desc,vod_id desc');$page = $vod_list[0]['page'];</php>
+<neq name="vod_list.0.count" value="0">
+<volist name="vod_list" id="ppvod">
+			<li><a href="{$ppvod.vod_readurl}" class="playpic" target="_blank"><img src="{$ppvod.vod_pic|getpicurl}" alt="{$ppvod.vod_name}" onerror="javascript:this.src='{$root}Public/images/nophoto.jpg';"/><em></em><span class="bg"></span><span><neq name="ppvod.vod_continu" value="0"><if  condition="($list_id)==4"><else/>连载至</if>{$ppvod.vod_continu}集<else/>完结</neq></span></a>
+			<h3><a href="{$ppvod.vod_readurl}" target="_blank" title="{$ppvod.vod_name}">{$ppvod.vod_name|msubstr=0,10|getcolor=$ppvod['vod_color']}</a></h3>
+			<p class="num_con">评分<em>(<em>{$ppvod.vod_golder}</em>人评)</em></p>
+			<ul class="movList3_ul_ul">
+			<li class="playactor"><strong><span>主演:</strong><empty name="ppvod.vod_actor">未知<else />{$ppvod.vod_actor|getactorurl}</empty></span></li>
+			<li><strong>年代:</strong><span>{$ppvod.vod_year|default='未录入'}</span></li>
+			<li><strong>类型:</strong><span>{$list_name}</span></li>
+			<li><strong>地区:</strong><span>{$ppvod.vod_area|default='未录入'}</span></li>
+			</ul>
+			<div class="mov-op"><a href="{$ppvod.vod_readurl}" target="_blank" class="mov-watch">观看</a></div>
+			<p class="oper"><a href="{$ppvod.vod_readurl}" target="_blank">剧情简介</a>|<a href="{:getplayurl($ppvod['vod_id'])}" target="_blank">直接观看</a></p>
+			</li>
+</volist><else/>该分类还没有添加影片！</neq>
+		</ul>
+		</div>
+
+        <p class="page">{$page}</p>
+    </div>			
+    </div>
+</div>
+
+<div class="sideR">
+<div class="box listl">
+    <h2>{$list_name}人气排行榜</h2> 
+	<div class="content">
+        <ol class="sort-list">
+
+        <php>$gold_desc = ff_mysql_vod('cid:'.$list_id.';limit:39;order:vod_hits desc,vod_hits desc');</php>
+<volist name="gold_desc" id="ppvod">
+			<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|msubstr=0,10}</a><span class="score">{$ppvod.vod_hits}</span></li>
+</volist>
+		</ol>
+    </div>
+</div>
+<div class="right"><script type="text/javascript" src="/tpl/30dv/home/ad/liebiaoyouxiajiao23460.js" charset="gbk"></script></div>
+</div>
+</div>
+<div class="banner-middle">{:getadsurl('neirong')}</div>
+<include file="Home:pp_footer" />
+</body>
+</html>

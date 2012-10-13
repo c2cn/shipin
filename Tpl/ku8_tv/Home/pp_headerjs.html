@@ -1,0 +1,126 @@
+﻿<div class="ff-hd">
+	<div class="logo"><a href="{$root}"><img src="{$tpl}images/logo.gif" alt="{$sitename}"/></a></div>
+   <div class="tips" id="user_status"></div>
+	<div class="banner" id="banner">{$hotkey}</div>
+	
+  </div>  	
+<div class="nav1">
+	<ul class="nav_ul">
+		<li class="no_bg"><a href="{$root}" target="_self">首页</a></li>
+	<volist name="list_menu" id="ppvod">
+    	<volist name="ppvod.son" id="son"><li <eq name="ppvod.list_id" value="$list_id"> class="no_bg"</eq>><a href="{$son.list_url}">{$son.list_name}</a></li></volist>
+	</volist>
+	<li><a href="{:getlistname(3,'list_url')}">经典动漫</a></li><li> <a href="{:getlistname(4,'list_url')}">综艺其他</a></li>	
+	</ul>
+</ul>
+    
+<p class="new"></p>
+    <p class="nav_tag" id="tag"><span>
+    	<a href="{:getlistname(1,'list_url')}">电影</a> | <a href="{:getlistname(2,'list_url')}">电视剧</a> | <a href="{$url_map_rss}" target="_blank">RSS订阅</a> | <a href="{:ff_mytpl_url('my_new.html')}">今日更新</a> | <a href="{:ff_mytpl_url('my_hot.html')}">排行榜</a> | <a href=http://ku8.tv title="酷8电影网" rel="sidebar" onclick="javascript:window.external.AddFavorite('http://ku8.tv', '酷8电影网');return false;">收藏本站</a> |  <a href="{$url_guestbook}">留言求片</a>
+ |  <a href="http://ku8.tv/vod-show-id-24.html"><font color=red><b>网络电视直播</font></b></a>
+</p>
+
+<p class="search"><form method="post" action="{$root}index.php?s=vod-search"><div class="form-box"><input name="wd" id="wd" value="输入影片、导演或演员名" maxlength="26" type="text" onFocus="if (value =='输入影片、导演或演员名'){value =''}" onBlur="if (value ==''){value='输入影片、导演或演员名'}"><input type="submit" class="submit" value="影视搜索"></div><input type="hidden" name="form_index" value="c3275a4fd37c7b208d378765a967d1e2" /></form></p>
+</div>
+
+<div class="index_hottag">
+  <ul>
+    <li><span>热门影星：</span></li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E5%88%98%E5%BE%B7%E5%8D%8E.html" target="_blank">刘德华</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E5%91%A8%E6%B6%A6%E5%8F%91.html" target="_blank">周润发</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E8%88%92%E6%B7%87.html" target="_blank">舒淇</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E5%88%98%E4%BA%A6%E8%8F%B2.html" target="_blank">刘亦菲</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E5%BC%A0%E6%95%8F.html" target="_blank">张敏</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E6%88%90%E9%BE%99.html" target="_blank">成龙</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E5%BC%A0%E5%AE%B6%E8%BE%89.html" target="_blank">张家辉</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E9%BB%84%E5%9C%A3%E4%BE%9D.html" target="_blank">黄圣依</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E6%9D%A8%E5%B9%82.html" target="_blank">杨幂</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E5%91%A8%E6%98%9F%E9%A9%B0.html" target="_blank">周星驰</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E5%BC%A0%E6%9F%8F%E8%8A%9D.html" target="_blank">张柏芝</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E8%B0%A2%E9%9C%86%E9%94%8B.html" target="_blank">谢霆锋</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E5%86%AF%E7%BB%8D%E5%B3%B0.html" target="_blank">冯绍峰</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E6%9D%8E%E8%BF%9E%E6%9D%B0.html" target="_blank">李连杰</a></a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E8%91%9B%E4%BC%98.html" target="_blank">葛优</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-actor-%E7%94%84%E5%AD%90%E4%B8%B9.html" target="_blank">甄子丹</a></li>
+  </ul>
+</div>
+<div class="index_hottag">
+  <ul>
+    <li><span>年份检索：</span></li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2011.html" target="_blank">2011</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2010.html" target="_blank">2010</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2009.html" target="_blank">2009</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2008.html" target="_blank">2008</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2007.html" target="_blank">2007</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2006.html" target="_blank">2006</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2005.html" target="_blank">2005</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2004.html" target="_blank">2004</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2003.html" target="_blank">2003</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2002.html" target="_blank">2002</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2001.html" target="_blank">2001</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-2000.html" target="_blank">2000</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-1999.html" target="_blank">1999</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-1998.html" target="_blank">1998</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-1997.html" target="_blank">1997</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-1996.html" target="_blank">1996</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-1995.html" target="_blank">1995</a>&nbsp;&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-year-1994.html" target="_blank">1994</a></li>
+  </ul>
+</div>
+<div class="index_hottag">
+  <ul>
+    <li><span>地区检索：</span></li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E4%B8%AD%E5%9B%BD.html" target="_blank">中国</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E5%A4%A7%E9%99%86.html" target="_blank">大陆</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E5%86%85%E5%9C%B0.html" target="_blank">内地</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E9%A6%99%E6%B8%AF.html" target="_blank">香港</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E5%8F%B0%E6%B9%BE.html" target="_blank">台湾</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E6%B8%AF%E5%8F%B0.html" target="_blank">港台</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E6%97%A5%E6%9C%AC.html" target="_blank">日本</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E9%9F%A9%E5%9B%BD.html" target="_blank">韩国</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E6%97%A5%E9%9F%A9.html" target="_blank">日韩</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E6%AC%A7%E7%BE%8E.html" target="_blank">欧美</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E6%B3%95%E5%9B%BD.html" target="_blank">法国</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E7%BE%8E%E5%9B%BD.html" target="_blank">美国</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E8%8B%B1%E5%9B%BD.html" target="_blank">英国</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E5%BE%B7%E5%9B%BD.html" target="_blank">德国</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E6%B3%B0%E5%9B%BD.html" target="_blank">泰国</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E9%A9%AC%E6%9D%A5%E8%A5%BF%E4%BA%9A.html" target="_blank">马来西亚</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E6%96%B0%E5%8A%A0%E5%9D%A1.html" target="_blank">新加坡</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E5%8A%A0%E6%8B%BF%E5%A4%A7.html" target="_blank">加拿大</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-area-%E8%A5%BF%E7%8F%AD%E7%89%99.html" target="_blank">西班牙</a></li>
+
+  </ul>
+</div>
+<div class="index_hottag1">
+  <ul>
+    <li><span>拼音首部：</span></li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-A.html" target="_blank">A</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-B.html" target="_blank">B</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-C.html" target="_blank">C</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-D.html" target="_blank">D</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-E.html" target="_blank">E</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-F.html" target="_blank">F</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-G.html" target="_blank">G</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-H.html" target="_blank">H</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-I.html" target="_blank">I</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-J.html" target="_blank">J</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-K.html" target="_blank">K</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-L.html" target="_blank">L</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-M.html" target="_blank">M</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-N.html" target="_blank">N</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-O.html" target="_blank">O</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-P.html" target="_blank">P</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-Q.html" target="_blank">Q</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-R.html" target="_blank">R</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-S.html" target="_blank">S</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-T.html" target="_blank">T</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-U.html" target="_blank">U</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-V.html" target="_blank">V</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-W.html" target="_blank">W</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-X.html" target="_blank">X</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-Y.html" target="_blank">Y</a>&nbsp;&nbsp;|&nbsp;</li>
+    <li>&nbsp;&nbsp;<a href="/vod-search-letter-Z.html" target="_blank">Z</a></li>
+
+  </ul>
+</div>

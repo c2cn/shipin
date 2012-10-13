@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="<empty name="list_keywords">{$list_name},{$sitename}<else />{$list_keywords}</empty>">
+<meta name="description" content="<empty name="list_description">{$list_name}在线观看免费下载.<else />{$list_description}</empty>">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link href="{$tpl}css.css" rel="stylesheet" type="text/css" />
+<title>{$list_name}_{$sitename}</title>
+</head>
+<body>
+<include file="Home:pp_headerjs" />
+<div class="container">
+<php>$cidarr=getlistarr($list_id);</php>
+<volist name="cidarr" id="ppcid" key="k">
+<div class="main">
+	<div class="box rbgx1">
+        <h2>最新{:getlistname($ppcid)}</h2><dl class="channel"><dd> <a href="{:getlistname($ppcid,'list_url')}">更多&gt;&gt;</a></dd></dl>
+        <div class="content">
+		<div class="movList">
+            <ul>
+
+<php>$vod_news = ff_mysql_vod('cid:'.$ppcid.';limit:12;order:vod_addtime desc');</php>
+<volist name="vod_news" id="ppvod">
+			<li><a href="{$ppvod.vod_readurl}" class="playpic" target="_blank"><img src="{$ppvod.vod_pic|getpicurl}" alt="{$ppvod.vod_name}" onerror="javascript:this.src='{$root}Public/images/nophoto.jpg';"/></a><span class="bg hover_bg"></span><span class="hover_bg_txt"><neq name="ppvod.vod_continu" value="0">连载至{$ppvod.vod_continu}集<else/>完结</neq></span><p class="mov-title"><a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name}</a><a href="{$ppvod.vod_readurl}" class="playMov"></a></p></li>
+</volist>
+			</ul>
+        </div>
+		</div>
+    </div>
+</div>
+<div class="sideR">
+<div class="box paihang1">
+    <h2>{:getlistname($ppcid)}排行榜</h2><dl class="channel"><dd><a href="{:getlistname($ppcid,'list_url')}" title="更多">更多&gt;&gt;</a></dd></dl>
+
+    <div class="content">
+        <ol class="sort-list">
+<php>$hot_week = ff_mysql_vod('cid:'.$ppcid.';limit:14;order:vod_hits desc,vod_addtime desc');</php>
+<volist name="hot_week" id="ppvod">
+			<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|msubstr=0,10}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_hits}</strong></span></li>
+</volist>
+			</ol>
+    </div>
+</div>
+</div>
+</volist>
+</div>
+<include file="Home:pp_footer" />
+</body>
+</html>

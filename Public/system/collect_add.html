@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>自定义采集</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/css/admin-style.css' />
+<script language="JavaScript" type="text/javascript" charset="utf-8" src="__PUBLIC__/js/jquery.js"></script>
+<script language="JavaScript" type="text/javascript" charset="utf-8" src="__PUBLIC__/js/admin.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+	$ff84.show.table();	 
+});
+function collecttab(no,n){
+	for(var i=1;i<=n;i++){
+		$('#collect'+i).hide();
+		$('#collect'+i+'str').hide();
+	}
+	if(no==1){
+	    $('#collect1').show();
+		$('#collect2str').show();
+	}else if(no==2){
+	    $('#collect2').show();
+		$('#collect2str').show();
+	    $('#collectpagename').html("批量生成列表页");
+	}else if(no==3){
+	    $('#collect2').show();
+	    $('#collectpagename').html("批量生成内容页");
+	}else if(no==4){
+	    $('#collect1').show();
+	    $('#collectpagename').html("手工生成内容页");
+	}	
+}
+function caijitab(id,val){
+	if(val>0){
+		$("#"+id).show();
+	}else{
+		$("#"+id).hide();
+	}
+}	
+</script>
+<style>
+input{ width:auto;}
+</style>
+</head>
+<body class="body">
+<div class="title">
+	<div class="left">{$collect_tpltitle}视频采集 <a href="?s=Admin-Collect-Show">返回采集管理</a></div>
+    <div class="right">说明: 右侧为替换规则，一行一个用$$$隔开 如需替换163.com为feifeicms.com 则这样填写163.com$$$feifeicms.com</div>
+</div>
+<div class="add">
+<gt name="collect_id" value="0">
+    <form action="?s=Admin-Collect-Update" method="post" name="myform" id="myform">
+    <input type="hidden" name="collect_id" value="{$collect_id}">
+<else/>
+    <form action="?s=Admin-Collect-Insert" method="post" name="myform" id="myform">
+</gt>
+    <ul><li class="left">节点名称：</li>
+    	<li class="right"><input type="text" name="collect_title" id="collect_title" value="{$collect_title}" class="w250" maxlength="30"></li>
+        <li class="left" style="width:80px">目标编码：</li>
+    	<li class="right"><select name="collect_encoding"><option value="gb2312">GB2312</option><option value="utf-8" <eq name="collect_encoding" value="utf-8">selected</eq>>UTF-8</option><option value="big5" <eq name="collect_encoding" value="big5">selected</eq>>BIG5</option></select></li>
+    </ul>
+    <ul><li class="left">播放器选择：</li>
+    	<li class="right"><select name="collect_player" class="w150"><volist name="playtree" id="ppvod" ><option value='{$key}' <eq name="key" value="$collect_player">selected</eq>>{$i}.{$key}.{$ppvod[1]}</option></volist></select></li>
+        <li class="left" style="width:80px">采集参数：</li>
+    	<li class="right"><input type="checkbox" name="collect_savepic" id="collect_savepic" value="1" class="noborder w30" <eq name="collect_savepic" value="1">checked</eq>>保存图片 <input type="checkbox" name="collect_order" id="collect_order" value="1" class="noborder w30" <eq name="collect_order" value="1">checked</eq>>倒序采集</li>
+    </ul>
+    <ul><li class="left">设置分页形式：</li>
+    	<li class="right"><input type="radio" name="collect_pagetype" value="1" onClick="collecttab(1,4);" class="noborder w30" <eq name="collect_pagetype" value="1">checked</eq>>手动列表页&nbsp;<input name="collect_pagetype" type="radio" value="2" onClick="collecttab(2,4);" class="noborder w30" <eq name="collect_pagetype" value="2">checked</eq>>批量列表页&nbsp;<input name="collect_pagetype" type="radio" value="3" onClick="collecttab(3,4);" class="noborder w30" <eq name="collect_pagetype" value="3">checked</eq>>批量内容页&nbsp;<input name="collect_pagetype" type="radio" value="4" onClick="collecttab(4,4);" class="noborder w30" <eq name="collect_pagetype" value="4">checked</eq>>手动内容页</li>
+    </ul>
+    <ul id="collect1" <if condition="($collect_pagetype eq 2) OR ($collect_pagetype eq 3) ">style="display:none"</if>>
+    	<li class="left t25">一行一个网址：</li>
+    	<li style="padding:3px 0px"><textarea name="collect_liststr" rows="5" class="w400">{$collect_liststr}</textarea></li>
+    </ul>
+    <ul id="collect2" <gt name="collect_pagetype" value="2">style="display:none"</gt>>
+    	<li class="left t25">批量分页规则：</li>
+    	<li><input name="collect_pagestr" type="text" value="{$collect_pagestr}" class="w400"><br>格式：http://www.xxx.com/list.asp?page=[$ppvod] 分页代码<font color=red>[$ppvod]</font><br>采集范围：<input name="collect_pagesid" type="text" value="{$collect_pagesid}" class="w50"> To <input name="collect_pageeid" type="text" value="{$collect_pageeid}" class="w50"> 例如：1 - 9</li>
+    </ul> 
+    <ul><li class="left t25">缩小内容页链接范围：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_listurlstr" id="collect_listurlstr" class="w400 h80" title="如不缩小范围，请留空">{$collect_listurlstr}</textarea></li>
+    </ul>
+     <ul><li class="left t25">内容页链接规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_listlink" id="collect_listlink" class="w400 h80">{$collect_listlink}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[listlink]" class="w300 h80" title="分类替换规则">{$collect_replace[0]}</textarea></li>
+    </ul>
+     <ul style="border-bottom:none"><li class="left t25">列表页图片链接规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_listpicstr" id="collect_listpicstr" class="w400 h80" title="如图片在内容页 请留空">{$collect_listpicstr}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[listpicstr]" class="w300 h80" title="分类替换规则">{$collect_replace[1]}</textarea></li>
+    </ul>
+</div>
+<div class="title" style="border-top: none">
+	<div class="left">内容页采集规则</div>
+</div>
+<div class="add">     
+    <ul><li class="left">视频分类选择：</li>
+    	<li class="right"><select name="collect_cid" onChange="caijitab('caijicid',this.value);"><option value="0">远程截取</option><volist name="listtree" id="ppvod"><option value="{$ppvod.list_id}" <eq name="ppvod.list_id" value="$collect_cid">selected</eq>>{$ppvod.list_name}</option><volist name="ppvod['son']" id="ppvod"><option value="{$ppvod.list_id}" <eq name="ppvod.list_id" value="$collect_cid">selected</eq>>├ {$ppvod.list_name}</option></volist></volist></select></li>
+    </ul>
+    <ul id="caijicid" <eq name="collect_cid" value="0">style="display:none"</eq>><li class="left t25">视频分类链接规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_listname" id="collect_listname" class="w400 h80">{$collect_listname}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[listname]" class="w300 h80" title="替换规则">{$collect_replace[2]|default="<[^>]+>$$$"}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频标题采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_name" id="collect_name" class="w400 h80">{$collect_name}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[vodname]" class="w300 h80" title="替换规则">{$collect_replace[3]}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频备注采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_info" id="collect_info" class="w400 h80">{$collect_name}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[vodinfo]" class="w300 h80" title="替换规则">{$collect_replace[4]}</textarea></li>
+    </ul>    
+    <ul><li class="left t25">视频主演采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_actor" id="collect_actor" class="w400 h80">{$collect_actor}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[actor]" class="w300 h80" title="替换规则">{$collect_replace[5]|default="<[^>]+>$$$"}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频导演采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_director" id="collect_director" class="w400 h80">{$collect_director}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[director]" class="w300 h80" title="替换规则">{$collect_replace[6]|default="<[^>]+>$$$"}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频简介采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_content" id="collect_content" class="w400 h80">{$collect_content}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[content]" class="w300 h80" title="替换规则">{$collect_replace[7]}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频图片链接规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_pic" id="collect_pic" class="w400 h80">{$collect_pic}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[pic]" class="w300 h80" title="替换规则">{$collect_replace[8]}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频连载采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_continu" id="collect_continu" class="w400 h80">{$collect_continu}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[continu]" class="w300 h80" title="替换规则">{$collect_replace[9]}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频地区采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_area" id="collect_area" class="w400 h80">{$collect_area}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[area]" class="w300 h80" title="替换规则">{$collect_replace[10]}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频语言采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_language" id="collect_language" class="w400 h80">{$collect_language}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[language]" class="w300 h80" title="替换规则">{$collect_replace[11]}</textarea></li>
+    </ul>
+    <ul style="border-bottom:none"><li class="left t25">视频年代链接规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_year" id="collect_year" class="w400 h80">{$collect_year}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[year]" class="w300 h80" title="替换规则">{$collect_replace[12]}</textarea></li>
+    </ul>
+</div>
+<div class="title" style="border-top: none">
+	<div class="left">播放地址采集规则</div>
+</div>
+<div class="add">    
+    <ul><li class="left t25">缩小播放地址HTML范围：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_urlstrr" id="collect_urlstr" class="w400 h80">{$collect_urlstr}</textarea></li>
+    </ul>
+    <ul><li class="left t25">分集名称采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_urlname" id="collect_urlname" class="w400 h80">{$collect_urlname}</textarea></li>
+    </ul>
+    <ul><li class="left t25">视频地址连接规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_urllink" id="collect_urllink" class="w400 h80" title="内容页已有播放地址请留空">{$collect_urllink}</textarea></li>
+    </ul>
+    <ul><li class="left t25">播放地址采集规则：<br>规则变量 <font color="#FF0000">[$ppvod]</font></li>
+    	<li class="right"><textarea name="collect_url" id="collect_url" class="w400 h80">{$collect_url}</textarea></li>
+        <li class="right" style="padding-left:5px"><textarea name="collect_replace[url]" class="w300 h80" title="分集名与地址替换规则">{$collect_replace[13]|default="<[^>]+>$$$"}</textarea></li>
+    </ul>
+    <ul class="footer"><!--<input type="button" class="submit" value="上一步"  onClick="history.back();"/> --><input type="submit" name="submit" value="提交"> <input type="reset" name="reset" value="重置"></ul></form>                                      
+</div>
+<include file="./Public/system/footer.html" />
+</body>
+</html>

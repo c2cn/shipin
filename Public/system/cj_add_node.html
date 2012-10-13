@@ -1,0 +1,21 @@
+<gt name="cj_id" value="0">
+    <form action="?s=Admin-Cj-Update" method="post" name="myform" id="myform">
+    <input type="hidden" name="cj_id" value="{$cj_id}">
+<else />
+    <form action="?s=Admin-Cj-Insert" method="post" name="myform" id="myform">
+</gt>
+<div class="cjtitle">第<em>1</em>步</div>
+<ul><li class="left">节点名称：</li>
+    <li class="right"><input type="text" name="cj_title" id="cj_title" value="{$cj_title}" class="w250" maxlength="30"></li>
+</ul>
+<ul><li class="left">播放器选择：</li>
+    <li class="right"><select name="cj_player" class="w150"><volist name="playtree" id="ppvod" ><option value='{$key}' <eq name="key" value="$cj_player">selected</eq>>{$i}.{$key}.{$ppvod[1]}</option></volist></select></li>
+</ul>
+<ul>
+    <li class="left">目标编码：</li>
+    <li class="right"><input type="checkbox" name="cj_coding" id="cj_coding" value="gbk" class="noborder w30" <eq name="cj_coding" value="gbk">checked</eq>>GBK <input type="checkbox" name="cj_coding" id="cj_coding" value="utf8" class="noborder w30" <eq name="cj_coding" value="utf8">checked</eq>>UTF-8 <input type="checkbox" name="cj_coding" id="cj_coding" value="big5" class="noborder w30" <eq name="cj_coding" value="big5">checked</eq>>BIG5</li>
+</ul>
+<ul>
+    <li class="left">采集参数：</li>
+    <li class="right"><input type="checkbox" name="cj_savepic" id="cj_savepic" value="1" class="noborder w30" <eq name="cj_savepic" value="1">checked</eq>>保存图片 <input type="checkbox" name="cj_order" id="cj_order" value="1" class="noborder w30" <eq name="cj_order" value="1">checked</eq>>倒序采集 </li>
+</ul>

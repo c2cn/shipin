@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<include file="Home:system_title_vod" />
+<include file="Home:system_js" />
+</head>
+<body>
+<include file="Home:pp_header" />
+<div class="bai" align="center"> 
+<script type=text/javascript  language=javascript>
+var star_userid='315910';
+var star_subid='0';
+var star_logo='true';
+var star_encode='YwuXKh1f5%2f0s7w8X3hBGohuhWJ4iWNlHJ57F2B1xiTdQXPozCGFCLA%3d%3d&ar2s=1';
+var star_exid='0';
+var star_width='950';
+var star_height='90';
+</script><script type=text/javascript language=javascript src='http://js.star8.net/code.js'></script>
+</div>
+<div class="bai"> </div>
+<div class="container">
+<div class="box data">
+<h2>当前位置：<a href="{$root}">首页</a> » <a href="{$list_url}">{$list_name}</a> » {$vod_name}</h2><dl class="channel"><dd></dd></dl>
+
+<div class="content">
+<div class="left"><img src="{$vod_pic|getpicurl}" alt="{$vod_name}" border="0"/></div>
+<div class="center">
+<ul><h3>《{$vod_name}》影片信息</h3>
+<p>主要演员：{$vod_actor|getactorurl} </p>
+<p>上映年份：{$vod_year|default='未录入'}年&nbsp;&nbsp;&nbsp;出产地区：{$vod_area}&nbsp;&nbsp;&nbsp;对白语言：{$vod_language}</p>
+<p>更新时间：{$vod_addtime|date='Y-m-d H:i:s',###}</p>
+<p>连载状态：<neq name="vod_continu" value="0"><font color="red">连载至{$vod_continu}集</font><else/>完结</neq> </p>
+<p class="up">影片评分：<include file="Home:system_updown" /></p>
+<p>关键字：<fflist name="Tag" id="ffvod"><a href="{$ffvod.tag_name|ff_tag_url}">{$ffvod.tag_name}</a>&nbsp;</fflist><a href="http://www.baidu.com/s?wd=%BF%E18%B5%E7%D3%B0%CD%F8&rsv_bp=0&rsv_spt=3&oq=%BF%E18&rsp=1&f=3&rsv_sug2=0&inputT=3109" target="_blank">百度影音</a></p></ul>
+<p>影片人气：{$vod_hits_insert}{$vod_hits}℃ </p>
+
+</div>
+<div class="right">
+<script type=text/javascript  language=javascript>
+var star_userid='315910';
+var star_subid='0';
+var star_logo='true';
+var star_encode='%2fhSCA6gqZlrTMed1Je%2fDS3WY6w8A6vhUA%2bvY%2bV3yp1AJpxYdx2r2hA%3d%3d&ar2s=1';
+var star_exid='0';
+var star_width='250';
+var star_height='250';
+</script><script type=text/javascript language=javascript src='http://js.star8.net/code.js'></script>
+</div>
+</div>
+</div>
+
+<volist name="vod_playlist" id="ppvod">
+<eq name="ppvod.playname" value="down">
+<div class="box data">
+<h2><div><a href="{$vod_playurl}">播放来源：{$ppvod.playername}</a>
+</div></h2>
+
+</div>
+<else/>
+<div class="box data" id="more">
+<h2><div><a href="{$vod_playurl}">{$vod_name}<font color=red>{$ppvod.playername}</font>在线观看</a></h2>
+<if condition="count($ppvod['son']) gt 20">
+<else/>
+
+</if>
+<div class="content">
+	<if condition="count($ppvod['son']) gt 20"><dd id="sub{$key+1}" class="play"><else/><ul class="play"></if>
+<php>$countji=count($ppvod['son'])-1;if($ppvod['son']>10){krsort($ppvod['son']);}</php>
+<volist name="ppvod['son']" id="ppvodson" key="iii">
+		<a href="{$ppvodson.playurl}" target="_blank">{$ppvodson.playname}</a>
+</volist>
+	<if  condition="count($ppvod['son']) gt 20"></dd><else/></ul></if>
+</dd>
+</div>
+</eq>
+<div class="bai">  </div>
+</volist>
+<div class="bai">  </div>
+
+<div class="box data">
+<h2><div><a href="{$vod_readurl}">{$vod_name}全集剧情介绍</a></div></h2>
+<div class="content">
+<div class="vod_content"><ul>{:ff_content_url($vod_content,$Tag)}<br />
+<a href="http://ku8.tv/">酷8电影网</a>致力于打造最新最全的电影电视剧网站，这里有最新电影电视剧的介绍、在线观看和高速下载地址，<a href="http://ku8.tv/">酷8电影网</a>有高清电影在线观看，是电影迷的网上影吧！
+</ul></div>
+</div>
+<div class="bai">  </div>
+<div class="box data">
+        <h2><div><a href="{$list_url}">热播{$list_name}</a></div></h2>
+        <div class="content">
+        <ul class="hot wbox"><php>$hot_week = ff_mysql_vod('cid:'.$list_id.';limit:8;order:vod_hits_month desc,vod_addtime desc');</php>
+        <volist name="hot_week" id="ppvod"><li><p><a href="{$ppvod.vod_readurl}"><img src="{$ppvod.vod_picurl}" alt="{$ppvod.vod_name}" /></a></p><h4 class="space"><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,12}</a></h4></li></volist></ul>
+	</div>
+</div>
+<div class="banner-middle">{:getadsurl('neirong')}</div>
+<include file="Home:pp_footer" />
+</body>
+</html>

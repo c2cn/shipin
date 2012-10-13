@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<meta name="keywords" content="<empty name="list_keywords">{$list_name},{$sitename}<else />{$list_keywords}</empty>">
+<meta name="description" content="<empty name="list_description">{$list_name}在线观看免费下载.<else />{$list_description}</empty>">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link href="{$tpl}css.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="kk-rank">
+<include file="Home:pp_header" />
+<div class="container">
+<php>$pidarr=array(1,2,3,4,5);</php>
+<volist name="pidarr" id="ppcid">
+<div class="column1">
+<div class="box">
+    <h2>本周{:getlistname($ppcid)}排行榜 <em>TOP10</em></h2>
+    <div class="content">
+    <ul class="rankList">
+<php>$allid=getcount($ppcid);$vod_map=$pplist->ppvod('pid:'.$ppcid.';day:7;num:10;order:vod_gold desc');</php>
+<volist name="vod_map" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_url}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,16}</a><a href="{$ppvod.vod_url}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_gold}</strong></span></li>
+</volist>
+	</ul>
+    </div>
+</div>
+<div class="box">
+    <h2>本月{:getlistname($ppcid)}排行榜 <em>TOP10</em></h2>
+    <div class="content">
+    <ul class="rankList">
+<php>$allid=getcount($ppcid);$vod_map2=$pplist->ppvod('pid:'.$ppcid.';day:30;num:10;order:vod_gold desc');</php>
+<volist name="vod_map2" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_url}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,16}</a><a href="{$ppvod.vod_url}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_gold}</strong></span></li>
+</volist>
+		</ul>
+    </div>
+</div>
+</div>
+<div class="column2">
+<div class="box">
+    <h2>年度{:getlistname($ppcid)}排行榜 <em>TOP10</em></h2>
+    <div class="content">
+    <ul class="rankList">
+<php>$allid=getcount($ppcid);$vod_map3=$pplist->ppvod('pid:'.$ppcid.';num:10;day:365;order:vod_gold desc');</php>
+<volist name="vod_map3" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_url}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,16}</a><a href="{$ppvod.vod_url}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_gold}</strong></span></li>
+</volist>
+	</ul>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</volist>
+</div>
+<include file="Home:pp_footer" />
+</body>
+</html>

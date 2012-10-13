@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新电视剧排行榜-最新电影排行榜-最新动漫排行榜-齐聚乐电影</title>
+<meta name="keywords" content="最新电视剧排行榜,最新电影排行榜,最新动漫排行榜,2012电影排行榜">
+<meta name="description" content="齐聚乐电影影视风云榜为您提供最新电视剧排行榜，最新电影排行榜，经典电视剧排行榜，韩国电视剧排行榜，2012大片排行榜等多种影视排行数据服务！">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link href="{$tpl}css.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="kk-rank">
+<include file="Home:pp_header" />
+<div class="container">
+<php>$pidarr=array(1);</php>
+<volist name="pidarr" id="ppcid">
+<div class="column1">
+<div class="box">
+    <h2>本周电影排行榜 <em>TOP10</em></h2>
+    <div class="content">
+    <ul class="rankList">
+<php>$hot_dy2 = ff_mysql_vod('cid:1'.$list_id.';limit:50;order:vod_hits desc,vod_addtime desc');</php>
+<volist name="hot_dy2" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,16}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_hits}</strong></span></li>
+</volist>
+	</ul>
+    </div>
+</div>
+<div class="box">
+    <h2>本月电视剧排行榜 <em>TOP10</em></h2>
+    <div class="content">
+    <ul class="rankList">
+<php>$hot_tv2 = ff_mysql_vod('cid:2'.$list_id.';limit:50;order:vod_hits desc,vod_addtime desc');</php>
+<volist name="hot_tv2" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,16}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_hits}</strong></span></li>
+</volist>
+		</ul>
+    </div>
+</div>
+</div>
+<div class="column2">
+<div class="box">
+    <h2>年度综艺动漫排行榜 <em>TOP10</em></h2>
+    <div class="content">
+    <ul class="rankList">
+<php>$hot_zy2 = ff_mysql_vod('cid:3,4'.$list_id.';limit:50;order:vod_hits desc,vod_addtime desc');</php>
+<volist name="hot_zy2" id="ppvod"> 
+		<li class="top"><em>{$key+1}</em><a href="{$ppvod.vod_readurl}" title="点击播放{$ppvod.vod_name}" target="_blank">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,16}</a><a href="{$ppvod.vod_readurl}" class="playMov" target="_blank"></a><span>{$ppvod.list_name}</span><span class="score"><strong>{$ppvod.vod_hits}</strong></span></li>
+</volist>
+	</ul>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</volist>
+</div>
+<include file="Home:pp_footer" />
+</body>
+</html>
